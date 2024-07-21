@@ -37,6 +37,9 @@ class SwerveDriveTrain(
     var wA: DoubleArray = DoubleArray(4)
     var max: Double = 0.0
 
+    var imuOffset: Double = 0.0
+    var maintainHeading = false
+
     init {
         frontLeft = SwerveModule(
             motor("frontLeft"),
@@ -155,10 +158,7 @@ class SwerveDriveTrain(
         @JvmField var trackWidth = 8.7
         @JvmField var wheelBase = 8.7
 
-        @JvmField var maintainHeading = false
-
         const val minPow: Double = 0.1
-        var imuOffset: Double = 0.0
 
         @JvmField var frontLeftOffset = 2.3
         @JvmField var frontRightOffset = 0.9

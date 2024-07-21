@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode
 
 import com.acmerobotics.dashboard.FtcDashboard
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry
-import com.arcrobotics.ftclib.geometry.Pose2d
 import com.qualcomm.hardware.bosch.BNO055IMU
 import com.qualcomm.hardware.lynx.LynxModule
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
@@ -22,7 +21,7 @@ import org.firstinspires.ftc.teamcode.subsystem.drive.SwerveDriveTrain
  * FTC 23396 Outreach Bot (prev. Centerstage Bot)
  */
 class OutreachBot(
-    val startPose: Pose2d,
+    val startPose: Pose,
     val opModeType: OpModeType,
     val hardwareMap: HardwareMap,
     val alliance: Alliance,
@@ -110,6 +109,10 @@ class OutreachBot(
 
     fun clearBulkCache() {
         controlHub.clearBulkCache()
+    }
+
+    fun getAngle(): Double {
+        return imuAngle - imuOffset
     }
 
     fun startIMUThread(opMode: LinearOpMode) {

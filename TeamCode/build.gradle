@@ -32,6 +32,8 @@ repositories {
     maven {
         url "https://maven.brott.dev/"
     }
+
+    maven { url = 'https://jitpack.io' }
 }
 
 
@@ -46,4 +48,6 @@ dependencies {
 
     implementation 'org.ftclib.ftclib:core:2.0.1'
     implementation "com.acmerobotics.dashboard:dashboard:0.4.14"
+
+    implementation 'com.github.Eeshwar-Krishnan:PhotonFTC:v3.0.1-ALPHA'
 }

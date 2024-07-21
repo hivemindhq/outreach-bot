@@ -9,9 +9,11 @@ import com.qualcomm.robotcore.hardware.CRServo
 import com.qualcomm.robotcore.hardware.CRServoImplEx
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorEx
+import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.hardware.PwmControl.PwmRange
 import com.qualcomm.robotcore.util.Range
 import org.firstinspires.ftc.teamcode.lib.hardware.AbsoluteAnalogEncoder
+import org.firstinspires.ftc.teamcode.lib.types.Env
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.sign
@@ -39,6 +41,11 @@ data class SwerveModule(
         motor.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.BRAKE
 
         (servo as CRServoImplEx).pwmRange = PwmRange(500.0, 2500.00, 5000.0)
+
+        if (Env.USING_PHOTON) {
+            motor.direction = DcMotorSimple.Direction.REVERSE
+            servo.direction = DcMotorSimple.Direction.REVERSE
+        }
 
         rotationController = PIDFController(kP, kI, kD, 0.0)
         motor.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER

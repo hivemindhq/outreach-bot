@@ -3,9 +3,11 @@ package org.firstinspires.ftc.teamcode.subsystem
 import com.acmerobotics.dashboard.config.Config
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorEx
+import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.util.Range
 import org.firstinspires.ftc.teamcode.OutreachBot
 import org.firstinspires.ftc.teamcode.lib.interfaces.ISubsystem
+import org.firstinspires.ftc.teamcode.lib.types.Env
 
 class IntakeSubsystem(
     robot: OutreachBot
@@ -20,6 +22,10 @@ class IntakeSubsystem(
     init {
         intakeMotor = motor("intake")
         intakeMotor.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
+
+        if (Env.USING_PHOTON) {
+            intakeMotor.direction = DcMotorSimple.Direction.REVERSE
+        }
     }
 
     fun updateState(power: Double) {

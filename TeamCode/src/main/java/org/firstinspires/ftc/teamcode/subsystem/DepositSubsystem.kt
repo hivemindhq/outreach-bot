@@ -7,10 +7,12 @@ import com.arcrobotics.ftclib.hardware.motors.Motor
 import com.arcrobotics.ftclib.hardware.motors.MotorEx
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorEx
+import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.hardware.Servo
 import com.qualcomm.robotcore.util.Range
 import org.firstinspires.ftc.teamcode.OutreachBot
 import org.firstinspires.ftc.teamcode.lib.interfaces.ISubsystem
+import org.firstinspires.ftc.teamcode.lib.types.Env
 import kotlin.math.abs
 
 class DepositSubsystem(
@@ -79,6 +81,10 @@ class DepositSubsystem(
         liftMotor.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
 
         enc = encoder("whatever")
+
+        if (Env.USING_PHOTON) {
+            enc.setDirection(Motor.Direction.REVERSE)
+        }
     }
 
     fun inThresh(): Boolean {
